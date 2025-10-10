@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+langchain
+langchain-openai
+langchain-community
+scikit-learn
+pydantic
+numpy
+python-dotenv
+PyPDF2
+python-multipart
