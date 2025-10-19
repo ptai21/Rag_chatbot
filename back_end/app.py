@@ -1,11 +1,12 @@
+import sys
 import os
-
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from config import OPENAI_API_KEY
 from fastapi import FastAPI, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from services.document_service import get_retriever  # Ensure retriever is available
+from services.document_service import get_retriever
 from services.document_service import (
     embed_documents,
     load_pdf_to_docs,
@@ -54,7 +55,14 @@ async def query_rag(query: str = Form(...)):
     try:
         print(f"Received query: {query}")
         retriever = get_retriever()  # Retrieve the current retriever
-        # retriever = None
+        # retriever = none
+
+        # Check if retriever is None or empty
+        if not retriever:
+            return JSONResponse(
+                {"error": "No documents have been uploaded yet. Please upload a document first."},
+                status_code=400
+            )
         llm = ChatOpenAI(model="gpt-4o")
         embeddings = OpenAIEmbeddings()
         result = optimized_rag_chain(query, retriever, llm, embeddings, top_k=5)

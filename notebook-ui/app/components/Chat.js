@@ -92,7 +92,9 @@ const Chat = ({ onQuery, isFileUploaded }) => {
             placeholder="Type your message..."
             className={`flex-1 p-4 text-lg border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 ${
               isFileUploaded ? "" : "bg-gray-100 cursor-not-allowed"
-            }`}
+            }
+            ${input ? "text-black" : "text-gray-600"}  
+            `}
             disabled={!isFileUploaded || isLoading} // Disable input when no file is uploaded or loading
           />
           <button

@@ -1,0 +1,29 @@
+# Environment variables
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Node modules (frontend / UI)
+node_modules/
+
+# System / IDE
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Model/vector databases or temp data
+back_end/documents/*
+!back_end/documents/README.md   # giữ lại file hướng dẫn nếu có
+*.db
+*.pkl
+*.faiss

@@ -5,7 +5,7 @@ from langchain.output_parsers import PydanticToolsParser
 from langchain.retrievers import EnsembleRetriever
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -122,7 +122,7 @@ def optimized_rag_chain(query, retriever, llm, embeddings, top_k=5):
     print(system_prompt)
 
     # Step 6: Get the answer from the LLM
-    response = llm(system_prompt)  # Assuming `llm` accepts plain string input
+    response = llm.invoke(system_prompt)  # Assuming `llm` accepts plain string input
 
     # Use `pretty_repr()` if available, otherwise convert to string
     if hasattr(response, "pretty_repr"):
